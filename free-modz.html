@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free RageMP Modz - Marsupilami Modz</title>
+
+<link rel="icon" type="image/png" href="https://i.postimg.cc/NK0P3nhp/0.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Flag icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { 'inter': ['Inter','sans-serif'] },
+      colors: {
+        primary:'#00d4ff',
+        secondary:'#ff6b35',
+        'dark-bg':'#0a0a0a',
+        'dark-card':'#1a1a1a',
+      }
+    }
+  }
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;}
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:#1a1a1a;}
+::-webkit-scrollbar-thumb{background:#00d4ff;border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:#ff6b35;}
+.gradient-bg{
+  background:linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+.logo-m{
+  width:50px;height:50px;display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;font-weight:900;color:#fff;position:relative;transition:all .3s;
+}
+.logo-m::before{
+  content:'M';position:absolute;color:rgba(255,255,255,0.3);
+  font-size:2.5rem;font-weight:900;transform:translate(2px,2px);z-index:-1;
+}
+.logo-m:hover{transform:scale(1.05);text-shadow:0 0 20px rgba(255,255,255,0.5);}
+
+/* Logo Rectangles */
+.logo-rectangle-freemodz {
+  width: 50px;
+  height: 25px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-rectangle-freemodz:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.logo-rectangle-freemodz-small {
+  width: 40px;
+  height: 20px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-rectangle-freemodz-small:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.3);
+}
+
+.logo-rectangle-freemodz-tiny {
+  width: 24px;
+  height: 12px;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-rectangle-freemodz-tiny:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+}
+.mod-card{transition:all .3s;}
+.mod-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,212,255,0.2);}
+.filter-btn{transition:all .3s;}
+.filter-btn.active{
+  background:linear-gradient(45deg,#00d4ff,#ff6b35);
+  color:white;transform:scale(1.05);
+}
+.loading{animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+</style>
+</head>
+
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Left: Logo + Title -->
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                    <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="w-36 h-36" />
+                    <div class="-ml-4">
+                        <h1 class="text-white font-bold text-lg">MARSUPILAMI MODZ</h1>
+                        <p class="text-primary text-xs">Free RageMP Modifications</p>
+                    </div>
+                </a>
+
+                <!-- Middle: Navigation links -->
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-home mr-2"></i><span data-translate="home">Home</span>
+                    </a>
+                    <a href="about.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-info-circle mr-2"></i><span data-translate="about">About</span>
+                    </a>
+                    <a href="free-modz.html" class="text-primary font-medium">
+                        <i class="fas fa-download mr-2"></i>Free Modz
+                    </a>
+                    <a href="support.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-headset mr-2"></i><span data-translate="support">Support</span>
+                    </a>
+                </nav>
+
+                <!-- Right: language selector + auth buttons -->
+                <div class="flex items-center gap-4">
+                    <div class="lang-dropdown">
+                        <button class="lang-btn" id="languageToggle">
+                            <span class="fi fi-us"></span> English
+                        </button>
+                        <ul class="lang-menu hidden" id="languageMenu">
+                            <li data-lang="en"><span class="fi fi-us"></span> English</li>
+                            <li data-lang="de"><span class="fi fi-de"></span> Deutsch</li>
+                            <li data-lang="es"><span class="fi fi-es"></span> Español</li>
+                            <li data-lang="fr"><span class="fi fi-fr"></span> Français</li>
+                        </ul>
+                    </div>
+
+                    <a href="login.html" class="btn btn-outline" data-translate="login">Login</a>
+                    <a href="register.html" class="btn btn-primary" data-translate="register">Register</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-6xl font-black text-white mb-4">
+      <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Free RageMP Modz
+      </span>
+    </h1>
+    <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+      Download free modifications for RageMP servers. All mods are tested and safe to use.
+    </p>
+  </div>
+
+  <div class="mb-8 bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+    <h2 class="text-white font-semibold text-lg mb-4 flex items-center">
+      <i class="fas fa-filter mr-2 text-primary"></i>Filter by Category
+    </h2>
+    <div class="flex flex-wrap gap-3" id="categoryFilters"></div>
+    <div class="mt-4 flex items-center justify-between">
+      <button id="clearFilters" class="text-gray-400 hover:text-white text-sm">
+        <i class="fas fa-times mr-1"></i>Clear All Filters
+      </button>
+      <span id="modCount" class="text-gray-400 text-sm">Loading mods...</span>
+    </div>
+  </div>
+
+  <div id="modsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div class="col-span-full text-center py-12">
+      <div class="loading">
+        <div class="logo-rectangle-freemodz-small mx-auto mb-4"></div>
+        <p class="text-gray-400">Loading mods...</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="noResults" class="hidden text-center py-12">
+    <div class="logo-rectangle-freemodz-small mx-auto mb-4 opacity-50"></div>
+    <h3 class="text-white text-xl font-semibold mb-2">No mods found</h3>
+    <p class="text-gray-400">Try adjusting your filters or check back later for new mods.</p>
+  </div>
+</main>
+
+<footer class="bg-black/50 border-t border-white/10 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+    <p class="text-gray-400">&copy; 2024 Marsupilami Modz. All rights reserved.</p>
+    <p class="text-gray-500 text-sm mt-2">Free mods for the RageMP community</p>
+  </div>
+</footer>
+
+<script>
+const CATEGORIES = [
+  'REDUX','AMIGO-TAOKA','REDUX-WITH-MINIMAP-NUMBERS','SKY','BLOODFX',
+  'ROADS','WESTS','TIMECYCLE','REFLECTION','LEGAL-SNIPER-SCOPE','HUD-COLOR',
+  'MINIMAP','MAP','FOOD','CLOTHING','FONT','MINIMAP-POSITION','TREES',
+  'OTHER','ARENA','LOADING-SCREEN-MUSIC'
+];
+
+// Fallback mods if CMS data fails to load
+const FALLBACK_MODS = [
+  { id:1, title:"Enhanced REDUX Graphics", category:"REDUX",
+    downloadLink:"https://drive.google.com/file/d/example1/view",
+    description:"Enhanced graphics pack for better visual experience",
+    youtube: "https://youtube.com/example1",
+    screenshot: "/images/uploads/example1.jpg" },
+  { id:2, title:"AMIGO-TAOKA Effects", category:"AMIGO-TAOKA",
+    downloadLink:"https://drive.google.com/file/d/example2/view",
+    description:"Custom visual effects for immersive gameplay",
+    youtube: "https://youtube.com/example2",
+    screenshot: "/images/uploads/example2.jpg" },
+  { id:3, title:"Realistic Sky Textures", category:"SKY",
+    downloadLink:"https://drive.google.com/file/d/example3/view",
+    description:"High-quality sky textures for better atmosphere",
+    youtube: "https://youtube.com/example3",
+    screenshot: "/images/uploads/example3.jpg" }
+];
+
+let allMods = [];
+let filteredMods = [];
+let selectedCategories = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadModsFromCMS();
+  initFilters();
+});
+
+async function loadModsFromCMS() {
+  try {
+    // Try to load mods from the mods folder
+    const response = await fetch('/mods/');
+    if (response.ok) {
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const links = doc.querySelectorAll('a[href$=".md"]');
+      
+      const modPromises = Array.from(links).map(async (link) => {
+        try {
+          const modResponse = await fetch(link.href);
+          const markdown = await modResponse.text();
+          return parseMarkdownMod(markdown);
+        } catch (error) {
+          console.error('Error loading mod:', link.href, error);
+          return null;
+        }
+      });
+      
+      const mods = (await Promise.all(modPromises)).filter(mod => mod !== null);
+      
+      if (mods.length > 0) {
+        allMods = mods;
+        filteredMods = [...allMods];
+        renderMods();
+        return;
+      }
+    }
+  } catch (error) {
+    console.error('Error loading mods from CMS:', error);
+  }
+  
+  // Fallback to sample mods if CMS fails
+  allMods = [...FALLBACK_MODS];
+  filteredMods = [...allMods];
+  renderMods();
+}
+
+function parseMarkdownMod(markdown) {
+  // Parse frontmatter from markdown
+  const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---/);
+  if (!frontmatterMatch) return null;
+  
+  const frontmatter = frontmatterMatch[1];
+  const fields = {};
+  
+  frontmatter.split('\n').forEach(line => {
+    const match = line.match(/^(\w+):\s*["']?([^"']*)["']?$/);
+    if (match) {
+      fields[match[1]] = match[2];
+    }
+  });
+  
+  if (!fields.title) return null;
+  
+  return {
+    id: Date.now() + Math.random(), // Generate unique ID
+    title: fields.title,
+    category: "CMS", // Default category for CMS mods
+    downloadLink: fields.download || "#",
+    description: fields.description || "Mod from CMS",
+    youtube: fields.youtube,
+    screenshot: fields.screenshot
+  };
+}
+
+function getYouTubeEmbedUrl(url) {
+  if (!url) return '';
+  
+  // Handle different YouTube URL formats
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}`;
+  }
+  
+  return url; // Return original URL if it doesn't match YouTube pattern
+}
+
+function saveMods(){
+  localStorage.setItem('rageMods', JSON.stringify(allMods));
+}
+
+function initFilters(){
+  const container = document.getElementById('categoryFilters');
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className='filter-btn px-4 py-2 rounded-full border border-white/20 text-white hover:border-primary transition-all';
+    btn.textContent=cat;
+    btn.dataset.category=cat;
+    btn.onclick=()=>toggleCategory(cat);
+    container.appendChild(btn);
+  });
+  document.getElementById('clearFilters').onclick = () => {
+    selectedCategories = [];
+    updateFilterButtons();
+    filteredMods = [...allMods];
+    renderMods();
+  };
+}
+
+function toggleCategory(cat){
+  const i = selectedCategories.indexOf(cat);
+  i>-1 ? selectedCategories.splice(i,1) : selectedCategories.push(cat);
+  updateFilterButtons();
+  filterMods();
+  renderMods();
+}
+
+function updateFilterButtons(){
+  document.querySelectorAll('.filter-btn').forEach(b=>{
+    selectedCategories.includes(b.dataset.category)
+      ? b.classList.add('active')
+      : b.classList.remove('active');
+  });
+}
+
+function filterMods(){
+  filteredMods = selectedCategories.length
+    ? allMods.filter(m=>selectedCategories.includes(m.category))
+    : [...allMods];
+}
+
+function deleteMod(id){
+  const mod = allMods.find(m => m.id === id);
+  Swal.fire({
+    title: 'Delete this mod?',
+    text: mod ? mod.title : 'Are you sure?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e3342f',  // red
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Yes, delete it',
+    background: '#1a1a1a',
+    color: '#fff'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      allMods = allMods.filter(m => m.id !== id);
+      filteredMods = filteredMods.filter(m => m.id !== id);
+      saveMods();
+      renderMods();
+
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'The mod has been removed.',
+        icon: 'success',
+        timer: 1800,
+        showConfirmButton: false,
+        background: '#1a1a1a',
+        color: '#fff'
+      });
+    }
+  });
+}
+
+function renderMods(){
+  const container = document.getElementById('modsContainer');
+  const noResults = document.getElementById('noResults');
+  const modCount = document.getElementById('modCount');
+
+  modCount.textContent = `${filteredMods.length} mod${filteredMods.length===1?'':'s'} found`;
+
+  if(!filteredMods.length){
+    container.innerHTML = '';
+    noResults.classList.remove('hidden');
+    return;
+  }
+  noResults.classList.add('hidden');
+
+  container.innerHTML = filteredMods.map(mod => `
+    <div class="mod-card bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-primary/50">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <div class="logo-rectangle-freemodz-tiny"></div>
+          <div>
+            <h3 class="text-white font-semibold text-lg">${mod.title}</h3>
+            <span class="inline-block px-3 py-1 bg-primary/20 text-primary text-xs rounded-full font-medium">
+              ${mod.category}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      ${mod.screenshot ? `
+        <div class="mb-4">
+          <img src="${mod.screenshot}" alt="${mod.title}" 
+               class="w-full h-48 object-cover rounded-lg border border-white/10">
+        </div>
+      ` : ''}
+      
+      <p class="text-gray-300 text-sm mb-4">${mod.description || 'No description'}</p>
+      
+      ${mod.youtube ? `
+        <div class="mb-4">
+          <iframe width="100%" height="200" 
+                  src="${getYouTubeEmbedUrl(mod.youtube)}" 
+                  title="${mod.title}" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen
+                  class="rounded-lg">
+          </iframe>
+        </div>
+      ` : ''}
+      
+      <div class="space-y-2">
+        <a href="${mod.downloadLink}" target="_blank"
+           class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80
+                  text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-105 flex
+                  items-center justify-center space-x-2">
+          <i class="fas fa-download"></i><span>Download</span>
+        </a>
+        ${mod.category !== 'CMS' ? `
+        <button onclick="deleteMod(${mod.id})"
+           class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg
+                  transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+          <i class="fas fa-trash"></i><span>Delete</span>
+        </button>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* Expose to future admin panel */
+window.addMod = function(title,category,downloadLink,description=''){
+  const newMod={id:Date.now(),title,category,downloadLink,description};
+  allMods.push(newMod); saveMods();
+  if(!selectedCategories.length) filteredMods.push(newMod);
+  renderMods(); return newMod;
+};
+window.getAllMods = () => allMods;
+window.deleteMod = deleteMod;
+
+// Language functionality for free-modz page
+document.addEventListener('DOMContentLoaded', function() {
+  const languageToggle = document.getElementById('languageToggle');
+  const languageMenu = document.getElementById('languageMenu');
+  
+  if (languageToggle && languageMenu) {
+    // Language dropdown functionality
+    languageToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = languageMenu.style.display === 'block';
+      languageMenu.style.display = isOpen ? 'none' : 'block';
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!languageToggle.contains(event.target) && !languageMenu.contains(event.target)) {
+        languageMenu.style.display = 'none';
+      }
+    });
+    
+    // Language selection
+    languageMenu.querySelectorAll('li').forEach(item => {
+      item.addEventListener('click', function(e) {
+        const selectedLanguage = e.currentTarget.getAttribute('data-lang');
+        const selectedItem = e.currentTarget;
+        
+        // Update button with chosen language + flag
+        languageToggle.innerHTML = selectedItem.innerHTML;
+        languageMenu.style.display = 'none';
+        
+        // Save language preference
+        localStorage.setItem('selectedLanguage', selectedLanguage);
+        
+        // Apply the new language (basic implementation)
+        console.log('Language changed to:', selectedLanguage);
+      });
+    });
+  }
+  
+  // Simple admin password functionality
+  const adminLink = document.getElementById('adminLink');
+  
+  adminLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = prompt('Enter admin password:');
+    if (password === 'MarsAdmin2025') {
+      window.location.href = 'admin.html';
+    } else if (password !== null) {
+      alert('Wrong password');
+    }
+  });
+});
+</script>
+
+<!-- Admin Login Button - Fixed Bottom Right -->
+<a href="admin.html"
+   class="fixed bottom-6 right-6 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-4 py-3 rounded-full shadow-2xl hover:from-red-600 hover:to-red-800 transition-all duration-300 transform hover:scale-105 z-50">
+    <i class="fas fa-user-shield mr-2"></i>Admin
+</a>
+</body>
+</html>

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Marsupilami Modz</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000000'/><text x='50' y='70' text-anchor='middle' font-family='Inter,sans-serif' font-size='60' font-weight='900' fill='%23ffffff'>M</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+    <script>
+        // Configure Tailwind to match the dark theme
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#00d4ff',
+                        'secondary': '#ff6b35',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff6b35;
+        }
+        
+        /* Gradient background animation */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Logo styling */
+        .logo-m {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-m::before {
+            content: 'M';
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2.5rem;
+            font-weight: 900;
+            transform: translate(2px, 2px);
+            z-index: -1;
+        }
+        
+        .logo-m:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Form styling */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+        
+        /* Mod card styling */
+        .mod-item {
+            transition: all 0.3s ease;
+        }
+        
+        .mod-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
+        }
+        
+        /* Success/Error messages */
+        .message {
+            animation: slideInDown 0.3s ease;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-width: 160px;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #00d4ff;
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 6px;
+            margin: 4px 0 0;
+            padding: 4px 0;
+            list-style: none;
+            display: none;
+            min-width: 170px;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .lang-menu li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .lang-menu li:hover {
+            background: #3a3a3a;
+        }
+        
+        .fi {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            box-shadow: 0 0 2px rgba(0,0,0,.3);
+            flex-shrink: 0;
+        }
+        
+        /* Logo Rectangles */
+        .logo-rectangle-admin {
+            width: 80px;
+            height: 40px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-rectangle-admin:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo-rectangle-admin-small {
+            width: 60px;
+            height: 30px;
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-rectangle-admin-small:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo-rectangle-admin-tiny {
+            width: 40px;
+            height: 20px;
+            background-color: white;
+            border-radius: 2px;
+            box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-rectangle-admin-tiny:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Left: Logo + Title -->
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                    <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="w-36 h-36" />
+                    <div class="-ml-4">
+                        <h1 class="text-white font-bold text-lg">MARSUPILAMI MODZ</h1>
+                        <p class="text-primary text-xs">Free RageMP Modifications</p>
+                    </div>
+                </a>
+
+                <!-- Middle: Navigation links -->
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-home mr-2"></i><span data-translate="home">Home</span>
+                    </a>
+                    <a href="about.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-info-circle mr-2"></i><span data-translate="about">About</span>
+                    </a>
+                    <a href="free-modz.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-download mr-2"></i>Free Modz
+                    </a>
+                    <a href="support.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-headset mr-2"></i><span data-translate="support">Support</span>
+                    </a>
+                </nav>
+
+                <!-- Right: language selector + auth buttons -->
+                <div class="flex items-center gap-4">
+                    <div class="lang-dropdown">
+                        <button class="lang-btn" id="languageToggle">
+                            <span class="fi fi-us"></span> English
+                        </button>
+                        <ul class="lang-menu hidden" id="languageMenu">
+                            <li data-lang="en"><span class="fi fi-us"></span> English</li>
+                            <li data-lang="de"><span class="fi fi-de"></span> Deutsch</li>
+                            <li data-lang="es"><span class="fi fi-es"></span> Español</li>
+                            <li data-lang="fr"><span class="fi fi-fr"></span> Français</li>
+                        </ul>
+                    </div>
+
+                    <a href="login.html" class="btn btn-outline" data-translate="login">Login</a>
+                    <a href="register.html" class="btn btn-primary" data-translate="register">Register</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-4">
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" data-translate="admin_panel">
+                    Admin Panel
+                </span>
+            </h1>
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto" data-translate="admin_description">
+                Manage free RageMP mods. Add, edit, and remove mods from the public gallery.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Add New Mod Form -->
+            <div class="bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <h2 class="text-white font-semibold text-xl mb-6 flex items-center">
+                    <i class="fas fa-plus-circle mr-3 text-primary"></i>
+                    Add New Mod
+                </h2>
+                
+                <form id="addModForm" class="space-y-4">
+                    <!-- Mod Title -->
+                    <div>
+                        <label for="modTitle" class="block text-white font-medium mb-2">
+                            Mod Title <span class="text-red-400">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="modTitle" 
+                            name="title"
+                            required
+                            class="form-input w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            placeholder="Enter mod title..."
+                        >
+                    </div>
+                    
+                    <!-- Category -->
+                    <div>
+                        <label for="modCategory" class="block text-white font-medium mb-2">
+                            Category <span class="text-red-400">*</span>
+                        </label>
+                        <select 
+                            id="modCategory" 
+                            name="category"
+                            required
+                            class="form-input w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary"
+                        >
+                            <option value="">Select a category...</option>
+                            <option value="REDUX">REDUX</option>
+                            <option value="AMIGO-TAOKA">AMIGO-TAOKA</option>
+                            <option value="REDUX-WITH-MINIMAP-NUMBERS">REDUX-WITH-MINIMAP-NUMBERS</option>
+                            <option value="SKY">SKY</option>
+                            <option value="BLOODFX">BLOODFX</option>
+                            <option value="ROADS">ROADS</option>
+                            <option value="WESTS">WESTS</option>
+                            <option value="TIMECYCLE">TIMECYCLE</option>
+                            <option value="REFLECTION">REFLECTION</option>
+                            <option value="LEGAL-SNIPER-SCOPE">LEGAL-SNIPER-SCOPE</option>
+                            <option value="HUD-COLOR">HUD-COLOR</option>
+                            <option value="MINIMAP">MINIMAP</option>
+                            <option value="MAP">MAP</option>
+                            <option value="FOOD">FOOD</option>
+                            <option value="CLOTHING">CLOTHING</option>
+                            <option value="FONT">FONT</option>
+                            <option value="MINIMAP-POSITION">MINIMAP-POSITION</option>
+                            <option value="TREES">TREES</option>
+                            <option value="OTHER">OTHER</option>
+                            <option value="ARENA">ARENA</option>
+                            <option value="LOADING-SCREEN-MUSIC">LOADING-SCREEN-MUSIC</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Google Drive Link -->
+                    <div>
+                        <label for="modLink" class="block text-white font-medium mb-2">
+                            Google Drive Link <span class="text-red-400">*</span>
+                        </label>
+                        <input 
+                            type="url" 
+                            id="modLink" 
+                            name="downloadLink"
+                            required
+                            class="form-input w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            placeholder="https://drive.google.com/file/d/..."
+                        >
+                        <p class="text-gray-400 text-sm mt-1">
+                            Make sure the Google Drive file is publicly accessible
+                        </p>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div>
+                        <label for="modDescription" class="block text-white font-medium mb-2">
+                            Description (Optional)
+                        </label>
+                        <textarea 
+                            id="modDescription" 
+                            name="description"
+                            rows="3"
+                            class="form-input w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary resize-none"
+                            placeholder="Brief description of the mod..."
+                        ></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit"
+                        class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                    >
+                        <i class="fas fa-plus"></i>
+                        <span>Add Mod</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Current Mods List -->
+            <div class="bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-white font-semibold text-xl flex items-center">
+                        <i class="fas fa-list mr-3 text-primary"></i>
+                        Current Mods
+                    </h2>
+                    <span id="modCount" class="text-gray-400 text-sm">
+                        Loading...
+                    </span>
+                </div>
+                
+                <div id="modsList" class="space-y-4 max-h-96 overflow-y-auto">
+                    <!-- Mods will be populated by JavaScript -->
+                    <div class="text-center py-8">
+                        <div class="logo-rectangle-admin-small mx-auto mb-4 opacity-50"></div>
+                        <p class="text-gray-400">Loading mods...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-12 bg-dark-card/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <h3 class="text-white font-semibold text-lg mb-4 flex items-center">
+                <i class="fas fa-info-circle mr-3 text-primary"></i>
+                Instructions
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+                <div>
+                    <h4 class="text-white font-medium mb-2">Adding Mods:</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li>• Fill in all required fields</li>
+                        <li>• Ensure Google Drive link is public</li>
+                        <li>• Select appropriate category</li>
+                        <li>• Add description for better user experience</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-2">Google Drive Setup:</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li>• Upload file to Google Drive</li>
+                        <li>• Right-click → Share → Anyone with link</li>
+                        <li>• Copy the sharing link</li>
+                        <li>• Test the link before adding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 Marsupilami Modz. Admin Panel
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Available categories (same as free-modz.html)
+        const CATEGORIES = [
+            'REDUX', 'AMIGO-TAOKA', 'REDUX-WITH-MINIMAP-NUMBERS',
+            'SKY', 'BLOODFX', 'ROADS', 'WESTS', 'TIMECYCLE', 'REFLECTION',
+            'LEGAL-SNIPER-SCOPE', 'HUD-COLOR', 'MINIMAP', 'MAP', 'FOOD',
+            'CLOTHING', 'FONT', 'MINIMAP-POSITION', 'TREES', 'OTHER',
+            'ARENA', 'LOADING-SCREEN-MUSIC'
+        ];
+
+        let allMods = [];
+
+        // Initialize the admin panel
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMods();
+            initializeForm();
+            renderModsList();
+        });
+
+        // Load mods from localStorage
+        function loadMods() {
+            const savedMods = localStorage.getItem('rageMods');
+            if (savedMods) {
+                allMods = JSON.parse(savedMods);
+            } else {
+                allMods = [];
+            }
+        }
+
+        // Save mods to localStorage
+        function saveMods() {
+            localStorage.setItem('rageMods', JSON.stringify(allMods));
+        }
+
+        // Initialize the form
+        function initializeForm() {
+            const form = document.getElementById('addModForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                addMod();
+            });
+        }
+
+        // Add new mod
+        function addMod() {
+            const form = document.getElementById('addModForm');
+            const formData = new FormData(form);
+            
+            const title = formData.get('title').trim();
+            const category = formData.get('category');
+            const downloadLink = formData.get('downloadLink').trim();
+            const description = formData.get('description').trim();
+            
+            // Validation
+            if (!title || !category || !downloadLink) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Check if mod with same title already exists
+            if (allMods.some(mod => mod.title.toLowerCase() === title.toLowerCase())) {
+                showMessage('A mod with this title already exists.', 'error');
+                return;
+            }
+            
+            // Create new mod
+            const newMod = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                downloadLink: downloadLink,
+                description: description,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Add to mods array
+            allMods.push(newMod);
+            saveMods();
+            
+            // Clear form
+            form.reset();
+            
+            // Update UI
+            renderModsList();
+            showMessage(`Mod "${title}" added successfully!`, 'success');
+        }
+
+        // Render mods list
+        function renderModsList() {
+            const container = document.getElementById('modsList');
+            const modCount = document.getElementById('modCount');
+            
+            // Update count
+            modCount.textContent = `${allMods.length} mod${allMods.length !== 1 ? 's' : ''}`;
+            
+            if (allMods.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="logo-rectangle-admin-small mx-auto mb-4 opacity-50"></div>
+                        <p class="text-gray-400">No mods added yet.</p>
+                        <p class="text-gray-500 text-sm mt-1">Add your first mod using the form on the left.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort mods by creation date (newest first)
+            const sortedMods = [...allMods].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            
+            container.innerHTML = sortedMods.map(mod => `
+                <div class="mod-item bg-black/30 rounded-lg p-4 border border-white/10">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <div class="logo-rectangle-admin-tiny"></div>
+                                <div>
+                                    <h4 class="text-white font-semibold">${mod.title}</h4>
+                                    <span class="inline-block px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
+                                        ${mod.category}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            ${mod.description ? `<p class="text-gray-300 text-sm mb-2">${mod.description}</p>` : ''}
+                            
+                            <div class="flex items-center space-x-4 text-xs text-gray-400">
+                                <span><i class="fas fa-calendar mr-1"></i>${new Date(mod.createdAt).toLocaleDateString()}</span>
+                                <a href="${mod.downloadLink}" target="_blank" class="text-primary hover:text-primary/80 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-1"></i>View Link
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            onclick="deleteMod(${mod.id})" 
+                            class="text-red-400 hover:text-red-300 transition-colors p-2 hover:bg-red-400/10 rounded-lg"
+                            title="Delete mod"
+                        >
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Delete mod
+        function deleteMod(id) {
+            if (confirm('Are you sure you want to delete this mod? This action cannot be undone.')) {
+                allMods = allMods.filter(mod => mod.id !== id);
+                saveMods();
+                renderModsList();
+                showMessage('Mod deleted successfully.', 'success');
+            }
+        }
+
+        // Show message
+        function showMessage(text, type = 'info') {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Create message element
+            const message = document.createElement('div');
+            message.className = `message fixed top-20 right-4 z-50 px-6 py-3 rounded-lg shadow-lg max-w-sm`;
+            
+            if (type === 'success') {
+                message.className += ' bg-green-600 text-white';
+            } else if (type === 'error') {
+                message.className += ' bg-red-600 text-white';
+            } else {
+                message.className += ' bg-blue-600 text-white';
+            }
+            
+            message.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                    <span>${text}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(message);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                message.style.animation = 'slideInDown 0.3s ease reverse';
+                setTimeout(() => {
+                    message.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Make deleteMod available globally
+        window.deleteMod = deleteMod;
+    </script>
+    
+    <!-- Language System -->
+    <script>
+        // Language persistence system
+        let currentLanguage = 'en';
+        const languageToggle = document.getElementById('languageToggle');
+        const languageMenu = document.getElementById('languageMenu');
+
+        // Translation data
+        const translations = {
+            en: {
+                home: "Home",
+                english: "English",
+                german: "Deutsch", 
+                spanish: "Español",
+                french: "Français",
+                admin_panel: "Admin Panel",
+                admin_description: "Manage free RageMP mods. Add, edit, and remove mods from the public gallery."
+            },
+            de: {
+                home: "Startseite",
+                english: "English",
+                german: "Deutsch",
+                spanish: "Español", 
+                french: "Français",
+                admin_panel: "Admin-Panel",
+                admin_description: "Verwalten Sie kostenlose RageMP-Mods. Fügen Sie Mods hinzu, bearbeiten und entfernen Sie sie aus der öffentlichen Galerie."
+            },
+            es: {
+                home: "Inicio",
+                english: "English",
+                german: "Deutsch",
+                spanish: "Español",
+                french: "Français", 
+                admin_panel: "Panel de Administración",
+                admin_description: "Gestiona mods gratuitos de RageMP. Añade, edita y elimina mods de la galería pública."
+            },
+            fr: {
+                home: "Accueil",
+                english: "English",
+                german: "Deutsch", 
+                spanish: "Español",
+                french: "Français",
+                admin_panel: "Panneau d'Administration",
+                admin_description: "Gérez les mods RageMP gratuits. Ajoutez, modifiez et supprimez les mods de la galerie publique."
+            }
+        };
+
+        // Initialize language system
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLanguage();
+            setupEventListeners();
+        });
+
+        function initializeLanguage() {
+            // Load saved language from localStorage
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage && translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+                
+                // Update the dropdown button to show the saved language
+                const languageItem = languageMenu.querySelector(`[data-lang="${savedLanguage}"]`);
+                if (languageItem) {
+                    languageToggle.innerHTML = languageItem.innerHTML;
+                }
+            }
+            
+            // Apply the current language
+            applyLanguage(currentLanguage);
+        }
+
+        function setupEventListeners() {
+            // Language dropdown
+            if (languageToggle) {
+                languageToggle.addEventListener('click', toggleLanguageMenu);
+            }
+            
+            if (languageMenu) {
+                languageMenu.querySelectorAll('li').forEach(item => {
+                    item.addEventListener('click', handleLanguageSelection);
+                });
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (languageToggle && languageMenu && 
+                    !languageToggle.contains(event.target) && 
+                    !languageMenu.contains(event.target)) {
+                    languageMenu.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleLanguageMenu() {
+            const isOpen = languageMenu.style.display === 'block';
+            languageMenu.style.display = isOpen ? 'none' : 'block';
+        }
+
+        function handleLanguageSelection(e) {
+            const selectedLanguage = e.currentTarget.getAttribute('data-lang');
+            const selectedItem = e.currentTarget;
+            
+            // Update button with chosen language + flag
+            languageToggle.innerHTML = selectedItem.innerHTML;
+            languageMenu.style.display = 'none';
+            
+            currentLanguage = selectedLanguage;
+            
+            // Save language preference
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            
+            // Apply the new language
+            applyLanguage(selectedLanguage);
+        }
+
+        function applyLanguage(language) {
+            if (!translations[language]) {
+                console.warn(`Language ${language} not found, falling back to English`);
+                language = 'en';
+            }
+            
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[language][key]) {
+                    element.textContent = translations[language][key];
+                }
+            });
+        }
+        
+    </script>
+    
+    <script>
+    // Simple admin password functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const adminLink = document.getElementById('adminLink');
+      
+      adminLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const password = prompt('Enter admin password:');
+        if (password === 'MarsAdmin2025') {
+          window.location.href = 'admin.html';
+        } else if (password !== null) {
+          alert('Wrong password');
+        }
+      });
+    });
+    </script>
+<!-- Admin Login Button - Fixed Bottom Right -->
+<a href="admin.html"
+   class="fixed bottom-6 right-6 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-4 py-3 rounded-full shadow-2xl hover:from-red-600 hover:to-red-800 transition-all duration-300 transform hover:scale-105 z-50">
+    <i class="fas fa-user-shield mr-2"></i>Admin
+</a>
+</body>
+</html>
+

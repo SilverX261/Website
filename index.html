@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marsupilami Modz - GTA Modifications Platform</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/NK0P3nhp/0.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Flag icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'inter': ['Inter','sans-serif'] },
+                    colors: {
+                        primary:'#00d4ff',
+                        secondary:'#ff6b35',
+                        'dark-bg':'#0a0a0a',
+                        'dark-card':'#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="home">
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Left: Logo + Title -->
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                    <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="w-36 h-36" />
+                    <div class="-ml-4">
+                        <h1 class="text-white font-bold text-lg">MARSUPILAMI MODZ</h1>
+                        <p class="text-primary text-xs">Free RageMP Modifications</p>
+                    </div>
+                </a>
+
+                <!-- Middle: Navigation links -->
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-home mr-2"></i><span data-translate="home">Home</span>
+                    </a>
+                    <a href="about.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-info-circle mr-2"></i><span data-translate="about">About</span>
+                    </a>
+                    <a href="free-modz.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-download mr-2"></i>Free Modz
+                    </a>
+                    <a href="support.html" class="text-white hover:text-primary transition-colors font-medium">
+                        <i class="fas fa-headset mr-2"></i><span data-translate="support">Support</span>
+                    </a>
+                </nav>
+
+                <!-- Right: language selector + auth buttons + Admin -->
+                <div class="flex items-center gap-4">
+
+                    <!-- Language selector -->
+                    <div class="lang-dropdown">
+                        <button class="lang-btn" id="languageToggle">
+                            <span class="fi fi-us"></span> English
+                        </button>
+                        <ul class="lang-menu hidden" id="languageMenu">
+                            <li data-lang="en"><span class="fi fi-us"></span> English</li>
+                            <li data-lang="de"><span class="fi fi-de"></span> Deutsch</li>
+                            <li data-lang="es"><span class="fi fi-es"></span> Español</li>
+                            <li data-lang="fr"><span class="fi fi-fr"></span> Français</li>
+                        </ul>
+                    </div>
+
+                    <a href="login.html" class="btn btn-outline" data-translate="login">Login</a>
+                    <a href="register.html" class="btn btn-primary" data-translate="register">Register</a>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Landing Page -->
+    <main class="landing-page">
+        <div class="container">
+            <div class="three-column-layout">
+                
+                <!-- Left Column - FiveM -->
+                <div class="column five-m-column">
+                    <div class="platform-header">
+                        <h2 class="platform-title">FIVEM</h2>
+                        <h3 class="platform-subtitle" data-translate="what_is_fivem">WHAT IS FIVEM?</h3>
+                    </div>
+                    
+                    <div class="platform-info">
+                        <ul class="info-list">
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_1">FiveM Is A Multiplayer Mod For GTA V</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_2">Developed By Cfx.Re (Now Part Of Rockstar/Take-Two)</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_3">Focus On Community Servers With Mods And Scripts</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_4">Scripting Primarily In Lua, JavaScript, And C#</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_5">Widely Used For Roleplay Servers (GTA RP)</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_6">Large Community, Many Resources And Tutorials Available</span></li>
+                            <li><i class="fas fa-arrow-right"></i> <span data-translate="fivem_desc_7">Runs Independently Of GTA Online - So No Risk Of Ban</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="platform-logo">
+                        <img src='https://i.postimg.cc/NK0P3nhp/0.png' alt='Marsupilami Modz Logo' class="logo-image-large"/>
+                        <div>
+                            <div class="logo-text-large">MARSUPILAMI MODZ</div>
+                            <div class="text-primary text-sm">Free RageMP Modifications</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Column - Main Selection -->
+                <div class="column main-column">
+                    <div class="main-content animate-on-scroll">
+                        <h1 class="main-title animate-fadeInUp delay-200" data-translate="main_title">Discover new worlds of modifications</h1>
+                        <p class="main-description animate-fadeInUp delay-400" data-translate="main_description">Welcome to Marsupilami Modz, your platform for unique GTA modifications and helpful tutorials to optimize your gaming experience.</p>
+                        
+                        <div class="game-selection animate-fadeInUp delay-600">
+                            <button class="game-btn hover-lift" data-game="gta5">
+                                <i class="fas fa-gamepad"></i>
+                                <span data-translate="gta5">GTA 5</span>
+                            </button>
+                            <button class="game-btn hover-lift" data-game="gta6">
+                                <i class="fas fa-gamepad"></i>
+                                <span data-translate="gta6">GTA 6</span>
+                            </button>
+                        </div>
+                        
+                        <div class="character-illustration">
+                            <div class="character">
+                                <i class="fas fa-user-ninja"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-branding">
+                            <div class="sub-logo">
+                                <div class="logo-rectangle-small"></div>
+                                <span>Marsupilami</span>
+                            </div>
+                            <p>Legal Mods for GTA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="main-logo">
+                        <img src='https://i.postimg.cc/NK0P3nhp/0.png' alt='Marsupilami Modz Logo' class="logo-image-large"/>
+                        <div>
+                            <div class="logo-text-large">MARSUPILAMI MODZ</div>
+                            <div class="text-primary text-sm">Free RageMP Modifications</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - RAGE MP -->
+                <div class="column rage-mp-column">
+                    <div class="platform-header">
+                        <h2 class="platform-title">RAGEMP</h2>
+                        <h3 class="platform-subtitle" data-translate="what_is_ragemp">WHAT IS RAGEMP?</h3>
+                    </div>
+                    
+                    <div class="platform-info">
+                        <ul class="info-list">
+                            <li><i class="fas fa-arrow-right"></i> RAGE MP = RAGE Multiplayer</li>
+                            <li><i class="fas fa-arrow-right"></i> Multiplayer mod for GTA V</li>
+                            <li><i class="fas fa-arrow-right"></i> Allows you to create your own servers with mods and scripts</li>
+                            <li><i class="fas fa-arrow-right"></i> Supports JavaScript and C# for scripting</li>
+                            <li><i class="fas fa-arrow-right"></i> Popular for roleplay, racing, and fun servers</li>
+                            <li><i class="fas fa-arrow-right"></i> Runs reliably with multiple simultaneous players</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="platform-logo">
+                        <img src='https://i.postimg.cc/NK0P3nhp/0.png' alt='Marsupilami Modz Logo' class="logo-image-large"/>
+                        <div>
+                            <div class="logo-text-large">MARSUPILAMI MODZ</div>
+                            <div class="text-primary text-sm">Free RageMP Modifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Platform Selection Modal -->
+    <div id="platformModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choose Your Platform</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="platform-cards">
+                    <div class="platform-card card-animated animate-on-scroll" data-platform="fivem">
+                        <div class="platform-icon">
+                            <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="logo-image-platform"/>
+                        </div>
+                        <h3>FiveM</h3>
+                        <p>Roleplay and custom server mods</p>
+                    </div>
+                    <a href="free-modz.html" class="platform-card free-mods-card card-animated animate-on-scroll delay-200" style="text-decoration: none; color: inherit;">
+                        <div class="platform-icon">
+                            <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="logo-image-platform"/>
+                        </div>
+                        <h3>Free Modz</h3>
+                        <p>Free RageMP modifications</p>
+                        <div style="background: linear-gradient(45deg, #00d4ff, #ff6b35); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 1rem;">
+                            <i class="fas fa-gift" style="margin-right: 0.5rem;"></i>
+                            Free Downloads
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GTA 6 Coming Soon Page -->
+    <div id="comingSoonPage" class="coming-soon-page" style="display: none;">
+        <div class="coming-soon-content">
+            <div class="container">
+                <div class="coming-soon-header">
+                    <button class="back-btn-coming-soon" id="backFromComingSoon">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </button>
+                    <div class="gta6-logo">
+                        <h1>GTA VI</h1>
+                        <div class="logo-subtitle">Grand Theft Auto VI</div>
+                    </div>
+                    <div class="coming-soon-badge">
+                        <i class="fas fa-clock"></i>
+                        Coming Soon
+                    </div>
+                </div>
+
+                <div class="coming-soon-body">
+                    <div class="countdown-container">
+                        <h2>Get Ready for the Next Generation</h2>
+                        <p>GTA VI is coming soon! Stay tuned for the most anticipated game of the decade.</p>
+                        
+                        <div class="countdown-timer" id="countdownTimer">
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="days">00</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="hours">00</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="minutes">00</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="seconds">00</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-preview">
+                        <h3>What to Expect</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-globe-americas"></i>
+                                <h4>Vice City & Beyond</h4>
+                                <p>Explore the vibrant streets of Vice City and beyond</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <h4>Enhanced Multiplayer</h4>
+                                <p>Revolutionary online experience with friends</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-car"></i>
+                                <h4>Next-Gen Vehicles</h4>
+                                <p>Incredible car collection with realistic physics</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-magic"></i>
+                                <h4>Modding Support</h4>
+                                <p>Full modding support for FiveM & RAGE MP</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notify-section">
+                        <h3>Stay Updated</h3>
+                        <p>Get notified when GTA VI mods become available</p>
+                        <div class="notify-form">
+                            <input type="email" placeholder="Enter your email address" id="notifyEmail">
+                            <button class="btn btn-primary" id="notifyBtn">
+                                <i class="fas fa-bell"></i>
+                                Notify Me
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="back-to-home">
+                        <button class="btn btn-outline" id="backToHome">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="bg-elements">
+            <div class="bg-element bg-element-1"></div>
+            <div class="bg-element bg-element-2"></div>
+            <div class="bg-element bg-element-3"></div>
+            <div class="bg-element bg-element-4"></div>
+        </div>
+    </div>
+
+    <!-- FiveM Modz Coming Soon Page -->
+    <div id="fivemComingSoonPage" class="coming-soon-page" style="display: none;">
+        <div class="coming-soon-content">
+            <div class="container">
+                <div class="coming-soon-header">
+                    <button class="back-btn-coming-soon" id="backFromFiveMComingSoon">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </button>
+                    <div class="fivem-logo">
+                        <h1>FiveM Modz</h1>
+                        <div class="logo-subtitle">Roleplay & Custom Server Mods</div>
+                    </div>
+                    <div class="coming-soon-badge">
+                        <i class="fas fa-clock"></i>
+                        Coming Soon
+                    </div>
+                </div>
+
+                <div class="coming-soon-body">
+                    <div class="coming-soon-message">
+                        <h2>Stay Tuned for Amazing FiveM Mods!</h2>
+                        <p>We're working hard to bring you the best FiveM modifications and custom server content. Get ready for an incredible modding experience!</p>
+                    </div>
+
+                    <div class="features-preview">
+                        <h3>What to Expect</h3>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <h4>Roleplay Scripts</h4>
+                                <p>Advanced roleplay scripts and systems for your server</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-car"></i>
+                                <h4>Vehicle Mods</h4>
+                                <p>Custom vehicles and car modifications for FiveM</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-map"></i>
+                                <h4>Map Modifications</h4>
+                                <p>Custom maps and location modifications</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-cogs"></i>
+                                <h4>Server Tools</h4>
+                                <p>Administrative tools and server management scripts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notify-section">
+                        <h3>Stay Updated</h3>
+                        <p>Get notified when FiveM mods become available</p>
+                        <div class="notify-form">
+                            <input type="email" placeholder="Enter your email address" id="notifyEmailFiveM">
+                            <button class="btn btn-primary" id="notifyBtnFiveM">
+                                <i class="fas fa-bell"></i>
+                                Notify Me
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="back-to-home">
+                        <button class="btn btn-outline" id="backToHomeFiveM">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAGE MP Mods Page -->
+        <div id="ragempModsPage" class="mods-page" style="display: none;">
+            <div class="mods-content">
+                <div class="mods-header">
+                    <h1>Public Mods</h1>
+                    <div class="mods-subtitle">RAGE MP Modifications</div>
+                </div>
+                
+                <div class="mods-list">
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">REDUX</span>
+                    </div>
+                    
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">AMIGO-TAOKA</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">REDUX-WITH-MINIMAP-NUMBERS</span>
+                    </div>
+                    
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">SKY</span>
+                    </div>
+                    
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">BLOODFX</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">ROADS</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">WESTS</span>
+                    </div>
+                    
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">TIMECYCLE</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">REFLECTION</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">LEGAL-SNIPER-SCOPE</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">HUD-COLOR</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">MINIMAP</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">MAP</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">FOOD</span>
+                    </div>
+                    
+                    <div class="mod-item featured">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">CLOTHING</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">FONT</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">MINIMAP-POSITION</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">TREES</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">OTHER</span>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <span class="mod-number">#</span>
+                        <span class="mod-lock">🔒</span>
+                        <div class="logo-rectangle-mod"></div>
+                        <span class="mod-name">ARENA</span>
+                    </div>
+                </div>
+                
+                <button class="back-btn-coming-soon" id="backFromRageMPMods">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-translate="back">Back</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="bg-elements">
+            <div class="bg-element bg-element-1"></div>
+            <div class="bg-element bg-element-2"></div>
+            <div class="bg-element bg-element-3"></div>
+            <div class="bg-element bg-element-4"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <script>
+    // Simple admin password functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const adminLink = document.getElementById('adminLink');
+        
+        adminLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const password = prompt('Enter admin password:');
+            if (password === 'MarsAdmin2025') {
+                window.location.href = 'admin.html';
+            } else if (password !== null) {
+                alert('Wrong password');
+            }
+        });
+    });
+    </script>
+
+    <!-- Admin Login Button - Fixed Bottom Right -->
+    <a href="admin.html"
+       class="fixed bottom-6 right-6 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-4 py-3 rounded-full shadow-2xl hover:from-red-600 hover:to-red-800 transition-all duration-300 transform hover:scale-105 z-50">
+        <i class="fas fa-user-shield mr-2"></i>Admin
+    </a>
+</body>
+</html>

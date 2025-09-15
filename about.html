@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About – Marsupilami Modz</title>
+
+<!-- Tailwind & Fonts -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Flag icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { inter: ['Inter', 'sans-serif'] },
+      colors: {
+        primary: '#00d4ff',
+        secondary: '#ff6b35',
+        'dark-bg': '#0a0a0a',
+        'dark-card': '#1a1a1a',
+        'dark-gray': '#1f1f1f'
+      }
+    }
+  }
+}
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #ff6b35; }
+
+/* gradient background like index */
+.gradient-bg {
+  background: linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+  0% {background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* simple fade/slide animation */
+@keyframes fadeUp {
+  0% {opacity:0; transform:translateY(30px);}
+  100% {opacity:1; transform:translateY(0);}
+}
+.fade-up {animation:fadeUp 1s ease-out forwards;}
+.fade-up-delay {animation:fadeUp 1s ease-out 0.3s forwards; opacity:0;}
+
+/* User Actions Styles */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #00d4ff, #0099cc);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00d4ff;
+}
+
+/* Language selector styles */
+.lang-dropdown { position: relative; }
+.lang-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.lang-btn:hover { border-color: #00d4ff; }
+.lang-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 50;
+}
+.lang-menu li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+}
+.lang-menu li:hover { background: rgba(255,255,255,0.1); }
+.lang-dropdown.open .lang-menu { display: block; }
+</style>
+</head>
+
+<body class="gradient-bg min-h-screen text-gray-200">
+<header class="bg-black/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Left: Logo + Title -->
+      <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+        <img src="https://i.postimg.cc/NK0P3nhp/0.png" alt="Marsupilami Modz Logo" class="w-36 h-36" />
+        <div class="-ml-4">
+          <h1 class="text-white font-bold text-lg">MARSUPILAMI MODZ</h1>
+          <p class="text-primary text-xs">Free RageMP Modifications</p>
+        </div>
+      </a>
+
+      <!-- Middle: Navigation links -->
+      <nav class="flex items-center space-x-6">
+        <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">
+          <i class="fas fa-home mr-2"></i><span data-translate="home">Home</span>
+        </a>
+        <a href="about.html" class="text-primary font-medium">
+          <i class="fas fa-info-circle mr-2"></i><span data-translate="about">About</span>
+        </a>
+        <a href="free-modz.html" class="text-white hover:text-primary transition-colors font-medium">
+          <i class="fas fa-download mr-2"></i>Free Modz
+        </a>
+        <a href="support.html" class="text-white hover:text-primary transition-colors font-medium">
+          <i class="fas fa-headset mr-2"></i><span data-translate="support">Support</span>
+        </a>
+      </nav>
+
+      <!-- Right: language selector + auth buttons -->
+      <div class="flex items-center gap-4">
+        <div class="lang-dropdown">
+          <button class="lang-btn" id="languageToggle">
+            <span class="fi fi-us"></span> English
+          </button>
+          <ul class="lang-menu hidden" id="languageMenu">
+            <li data-lang="en"><span class="fi fi-us"></span> English</li>
+            <li data-lang="de"><span class="fi fi-de"></span> Deutsch</li>
+            <li data-lang="es"><span class="fi fi-es"></span> Español</li>
+            <li data-lang="fr"><span class="fi fi-fr"></span> Français</li>
+          </ul>
+        </div>
+
+        <a href="login.html" class="btn btn-outline" data-translate="login">Login</a>
+        <a href="register.html" class="btn btn-primary" data-translate="register">Register</a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- About Content -->
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <section class="fade-up text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
+      About <span class="text-primary">Marsupilami Modz</span>
+    </h1>
+    <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+      We create and share free, high-quality modifications for the RageMP community.
+      Our mission is to provide easy access to premium-quality mods for everyone.
+    </p>
+  </section>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Card 1 -->
+    <div class="fade-up-delay bg-dark-gray rounded-xl p-8 shadow-lg border border-white/10 hover:border-primary transition-colors">
+      <h2 class="text-2xl font-bold text-white mb-3 flex items-center">
+        <i class="fas fa-users text-primary mr-3"></i>Our Community
+      </h2>
+      <p class="text-gray-300 leading-relaxed">
+        Join thousands of players who trust Marsupilami Modz for their RageMP servers.
+        Our Discord community is active, friendly, and ready to help.
+      </p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="fade-up-delay bg-dark-gray rounded-xl p-8 shadow-lg border border-white/10 hover:border-secondary transition-colors">
+      <h2 class="text-2xl font-bold text-white mb-3 flex items-center">
+        <i class="fas fa-code text-secondary mr-3"></i>Quality Mods
+      </h2>
+      <p class="text-gray-300 leading-relaxed">
+        We focus on clean, optimized and reliable modifications to enhance gameplay,
+        from HUD tweaks to immersive visual effects.
+      </p>
+    </div>
+  </div>
+
+  <!-- Call to action -->
+  <div class="fade-up mt-16 text-center">
+    <a href="https://discord.gg/marsupilami-modz" target="_blank"
+       class="inline-block bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+       <i class="fab fa-discord mr-2"></i>Join Our Discord
+    </a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black/50 border-t border-white/10 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+    <p class="text-gray-400">&copy; 2024 Marsupilami Modz. All rights reserved.</p>
+    <p class="text-gray-500 text-sm mt-2">Free mods for the RageMP community</p>
+  </div>
+</footer>
+
+<script>
+// ✅ Fully functional dropdown (same as index.html)
+document.addEventListener('DOMContentLoaded', () => {
+  const langDropdown = document.getElementById('langDropdown');
+  const langToggle = document.getElementById('languageToggle');
+  const langMenu = document.getElementById('languageMenu');
+
+  langToggle.addEventListener('click', () => {
+    langDropdown.classList.toggle('open');
+  });
+
+  langMenu.querySelectorAll('li').forEach(item => {
+    item.addEventListener('click', () => {
+      const flag = item.querySelector('.fi').outerHTML;
+      const text = item.textContent.trim();
+      langToggle.innerHTML = `${flag} ${text}`;
+      langDropdown.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!langDropdown.contains(e.target)) {
+      langDropdown.classList.remove('open');
+    }
+  });
+  });
+  
+  // Simple admin password functionality
+  const adminLink = document.getElementById('adminLink');
+  
+  adminLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const password = prompt('Enter admin password:');
+    if (password === 'MarsAdmin2025') {
+      window.location.href = 'admin.html';
+    } else if (password !== null) {
+      alert('Wrong password');
+    }
+  });
+</script>
+
+<!-- Admin Login Button - Fixed Bottom Right -->
+<a href="admin.html"
+   class="fixed bottom-6 right-6 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-4 py-3 rounded-full shadow-2xl hover:from-red-600 hover:to-red-800 transition-all duration-300 transform hover:scale-105 z-50">
+    <i class="fas fa-user-shield mr-2"></i>Admin
+</a>
+</body>
+</html>

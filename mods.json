@@ -1,0 +1,53 @@
+{
+  "mods": [
+    {
+      "id": 1,
+      "title": "Enhanced REDUX Graphics",
+      "category": "REDUX",
+      "downloadLink": "https://drive.google.com/file/d/example1/view",
+      "description": "Enhanced graphics pack for better visual experience",
+      "createdAt": "2024-01-15T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "AMIGO-TAOKA Effects",
+      "category": "AMIGO-TAOKA",
+      "downloadLink": "https://drive.google.com/file/d/example2/view",
+      "description": "Custom visual effects for immersive gameplay",
+      "createdAt": "2024-01-15T10:35:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Realistic Sky Textures",
+      "category": "SKY",
+      "downloadLink": "https://drive.google.com/file/d/example3/view",
+      "description": "High-quality sky textures for better atmosphere",
+      "createdAt": "2024-01-15T10:40:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Blood Effects Pack",
+      "category": "BLOODFX",
+      "downloadLink": "https://drive.google.com/file/d/example4/view",
+      "description": "Enhanced blood effects for realistic combat",
+      "createdAt": "2024-01-15T10:45:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "Custom HUD Colors",
+      "category": "HUD-COLOR",
+      "downloadLink": "https://drive.google.com/file/d/example5/view",
+      "description": "Customizable HUD color schemes",
+      "createdAt": "2024-01-15T10:50:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Improved Minimap",
+      "category": "MINIMAP",
+      "downloadLink": "https://drive.google.com/file/d/example6/view",
+      "description": "Enhanced minimap with better visibility",
+      "createdAt": "2024-01-15T10:55:00.000Z"
+    }
+  ]
+}
+
