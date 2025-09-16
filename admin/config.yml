@@ -1,16 +1,16 @@
 backend:
   name: git-gateway
-  branch: main   # or master if that is your default branch
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+  branch: main  # or your main branch
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
 collections:
-  - name: "mods"
-    label: "Free Mods"
-    folder: "mods"
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "YouTube Link", name: "youtube", widget: "string" }
-      - { label: "Screenshot", name: "screenshot", widget: "image" }
-      - { label: "Download Link", name: "download", widget: "string" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
